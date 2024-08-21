@@ -1,0 +1,47 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.video {
+    position: relative;
+    min-height: 50rem; // mínimo 500px
+    max-height: 70rem; // máximo 700px
+    overflow: hidden; // es para lo que se sobrepase, se oculte
+    .overlay {
+        position: absolute;
+        background: linear-gradient(
+            270deg,
+            rgba( v.$morado, 60% ),
+            rgba( darken( v.$morado, 20% ),  90% )
+        );
+        inset: 0;
+
+        display: flex;
+        align-items: center;
+    }
+
+    video {
+        display: block;
+        width: auto; // para los dispositivos más pequeños
+        @include m.desktop {
+            width: 100%;
+        }
+    }
+}
+
+.contenido-video {
+    z-index: 10; // es para controlar qué elementos se muestran delante de otros
+    h2 {
+        color: v.$blanco;
+        font-size: 7rem;
+        margin: 0; // todos los heading tienen margin y se los quitamos para que se vea mejor
+    }
+    p {
+        background-color: v.$rosa;
+        display: inline-block;
+        padding: 1rem 2rem; // padding es para darle espacio arriba y abajo
+        color: v.$blanco;
+        font-size: 2.4rem; // tamaño del texto
+        font-weight: 700; // para verlo en negrita
+        margin: 0;
+    }
+}

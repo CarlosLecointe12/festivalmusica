@@ -1,0 +1,79 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.galeria {
+    @include m.contenedor;
+
+    &-imagenes {
+        @include m.grid(1, 2rem); // le estamos indicando que será un grid de "1 columna" con separación de "2 rem".
+
+        @include m.telefono {
+            @include m.grid(2, 2rem);
+        }
+
+        @include m.tablet {
+            @include m.grid(3, 2rem);
+        }
+
+        @include m.desktop {
+            @include m.grid(4, 2rem);
+        }
+
+        img {
+            height: 20rem; // le estoy dando una altura de 200px
+            object-fit: cover; // forzando a que la imagen llene el espacio vacío del contenedor
+        }
+    }
+}
+
+.modal {
+    position: fixed; // fixed hace que el lemento no se pueda mover del lugar
+    inset: 0; // con inset le estamos diciendo que se posicione en cada esquina de la pantalla
+    background-color: rgba(v.$negro, 0.5); // rgba( color, transparencia )
+    display: grid;
+    place-items: center; // para centrar la imagen
+    animation: fadeIn ease-in 0.5s; 
+
+    &.fade-out {
+        animation: fadeOut ease-in 0.5s;
+    }
+
+    img {
+        max-width: 100rem; // tamaño de la imagen 
+    }
+}
+
+.btn-cerrar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: v.$blanco;
+    color: v.$negro;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+// Animación de transición
+@keyframes fadeIn {
+    // cuando inicia la animación
+    0% {
+        opacity: 0;
+    }
+    // cuando finaliza la animación
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    // cuando inicia la animación
+    0% {
+        opacity: 1;
+    }
+    // cuando finaliza la animación
+    100% {
+        opacity: 0;
+    }
+}
